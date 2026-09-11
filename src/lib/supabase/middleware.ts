@@ -6,52 +6,62 @@ export async function updateSession(request: NextRequest) {
     request,
   })
 
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        getAll() {
-          return request.cookies.getAll()
-        },
-        setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value, options }) => request.cookies.set(name, value))
-          supabaseResponse = NextResponse.next({
-            request,
-          })
-          cookiesToSet.forEach(({ name, value, options }) =>
-            supabaseResponse.cookies.set(name, value, options)
-          )
-        },
-      },
-    }
-  )
+  const url = (process.env.NEXT_PUBLIC_SUPABASE_URL || '').trim();
+  const key = (process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '').trim();
 
-  // refreshing the auth token
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-
-  const isAuthRoute = request.nextUrl.pathname.startsWith('/login') || request.nextUrl.pathname.startsWith('/signup');
-  const isProtectedRoute = request.nextUrl.pathname.startsWith('/dashboard') || 
-                           request.nextUrl.pathname.startsWith('/profile') || 
-                           request.nextUrl.pathname.startsWith('/messages') ||
-                           request.nextUrl.pathname.startsWith('/search') ||
-                           request.nextUrl.pathname.startsWith('/events') ||
-                           request.nextUrl.pathname.startsWith('/opportunities') ||
-                           request.nextUrl.pathname.startsWith('/admin');
-
-  if (!user && isProtectedRoute) {
-    // no user, potentially respond by redirecting the user to the login page
-    const url = request.nextUrl.clone()
-    url.pathname = '/login'
-    return NextResponse.redirect(url)
+  if (!url || !key) {
+    return supabaseResponse;
   }
 
-  if (user && isAuthRoute) {
-    const url = request.nextUrl.clone()
-    url.pathname = '/dashboard'
-    return NextResponse.redirect(url)
+  try {
+    const supabase = createServerClient(
+      url,
+      key,
+      {
+        cookies: {
+          getAll() {
+            return request.cookies.getAll()
+          },
+          setAll(cookiesToSet) {
+            cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value))
+            supabaseResponse = NextResponse.next({
+              request,
+            })
+            cookiesToSet.forEach(({ name, value, options }) =>
+              supabaseResponse.cookies.set(name, value, options)
+            )
+          },
+        },
+      }
+    )
+
+    // refreshing the auth token
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
+
+    const isAuthRoute = request.nextUrl.pathname.startsWith('/login') || request.nextUrl.pathname.startsWith('/signup');
+    const isProtectedRoute = request.nextUrl.pathname.startsWith('/dashboard') || 
+                             request.nextUrl.pathname.startsWith('/profile') || 
+                             request.nextUrl.pathname.startsWith('/messages') ||
+                             request.nextUrl.pathname.startsWith('/search') ||
+                             request.nextUrl.pathname.startsWith('/events') ||
+                             request.nextUrl.pathname.startsWith('/opportunities') ||
+                             request.nextUrl.pathname.startsWith('/admin');
+
+    if (!user && isProtectedRoute) {
+      const redirectUrl = request.nextUrl.clone()
+      redirectUrl.pathname = '/login'
+      return NextResponse.redirect(redirectUrl)
+    }
+
+    if (user && isAuthRoute) {
+      const redirectUrl = request.nextUrl.clone()
+      redirectUrl.pathname = '/dashboard'
+      return NextResponse.redirect(redirectUrl)
+    }
+  } catch (err) {
+    console.error("Middleware auth session check error:", err);
   }
 
   return supabaseResponse
