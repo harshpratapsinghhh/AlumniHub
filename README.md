@@ -200,16 +200,3 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 - **Resume Builder & Feedback**: Allow students to submit resumes for alumni review.
 
 ---
-
-## 📤 Submission Commands (75way Technologies Evaluation)
-
-To initialize and push this complete project to GitHub:
-
-```bash
-git init
-git add .
-git commit -m "Finalize AlumniHub for software development evaluation at 75way Technologies"
-git branch -M main
-git remote add origin <YOUR_GITHUB_REPOSITORY_URL>
-git push -u origin main
-```
