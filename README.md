@@ -4,7 +4,7 @@
 
 ---
 
-## 🌟 Key Features
+## Key Features
 
 ### 1. Authentication & Role Authorization
 - **Role-Based Access Control**: Supports **Student**, **Alumni**, and **Admin** user types.
@@ -49,7 +49,7 @@
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Frontend**: Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4, `@base-ui/react`, Sonner Toasts, Lucide Icons
 - **Backend / API**: Next.js App Router REST API Routes (`/api/...`), Server Actions, `@supabase/ssr` Middleware
@@ -57,7 +57,7 @@
 - **Validation**: Zod & TypeScript interface schemas
 
 ---
-## 📂 Project Structure
+## Project Structure
 
 ```
 AlumniHub/
@@ -110,7 +110,7 @@ AlumniHub/
 
 ---
 
-## ⚡ REST API Endpoint Reference
+## REST API Endpoint Reference
 
 | Endpoint | Method | Access | Description |
 | :--- | :---: | :---: | :--- |
@@ -131,7 +131,7 @@ AlumniHub/
 
 ---
 
-## 🚀 Running Locally
+## Running Locally
 
 ### Prerequisites
 - Node.js (v18.x or v20.x recommended)
@@ -164,7 +164,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
-## 🔮 Future Enhancements Roadmap
+## Future Enhancements Roadmap
 
 - **Mentorship Pairing Algorithm**: Match students with alumni based on target industry & skills.
 - **Automated Email Notifications**: Email alerts for new connection requests and job postings.
