@@ -139,7 +139,7 @@ AlumniHub/
 
 ### 1. Clone & Install Dependencies
 ```bash
-git clone <https://github.com/harshpratapsinghhh/AlumniHub>
+git clone https://github.com/harshpratapsinghhh/AlumniHub.git
 cd AlumniHub
 npm install
 ```
@@ -153,25 +153,14 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=supabase-anon-key
 
 ### 3. Database Setup (Supabase)
 1. Open your Supabase project SQL Editor.
-2. Run the SQL DDL statements in [`schema.sql`](file:///c:/D/AlumniHub/schema.sql) to create tables, indexes, and RLS policies.
-3. Run the SQL trigger in [`trigger.sql`](file:///c:/D/AlumniHub/trigger.sql) to enable automatic profile creation on sign-up.
+2. Run [`schema.sql`](./schema.sql) in the Supabase SQL Editor.
+3. Run [`trigger.sql`](./trigger.sql) in the Supabase SQL Editor.
 
 ### 4. Start Development Server
 ```bash
 npm run dev
 ```
 Open [http://localhost:3000](http://localhost:3000) in your browser.
-
----
-
-## 📸 Screenshots
-
-*(UI screenshots can be attached here for review)*
-
-- **Dashboard & Real Metrics**: Comprehensive feed with profile strength indicator and database stats.
-- **Directory & Multi-Attribute Search**: Filter alumni by role, company, skills, batch, and branch.
-- **Opportunities Job Board**: Filter and post job & internship openings.
-- **Admin Console**: System administration tab for managing users and moderating content.
 
 ---
 
