@@ -57,24 +57,6 @@
 - **Validation**: Zod & TypeScript interface schemas
 
 ---
-
-## 📐 System Architecture
-
-```mermaid
-graph TD
-    Client[Next.js 16 Client App / React 19] --> Middleware[Next.js Server Middleware / src/middleware.ts]
-    Middleware --> ProtectedPage[Protected App Routes / (app)]
-    Client --> REST[REST API Routes / /api/...]
-    REST --> SupabaseServer[@supabase/ssr Server Client]
-    Client --> SupabaseClient[@supabase/ssr Browser Client]
-    SupabaseServer --> SupabaseDB[(Supabase PostgreSQL Database)]
-    SupabaseClient --> SupabaseAuth[Supabase Auth Engine]
-    SupabaseClient --> SupabaseRealtime[Supabase Realtime WebSockets]
-    SupabaseDB --> RLS[Row Level Security Policies]
-```
-
----
-
 ## 📂 Project Structure
 
 ```
