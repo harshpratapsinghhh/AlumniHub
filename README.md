@@ -139,7 +139,7 @@ AlumniHub/
 
 ### 1. Clone & Install Dependencies
 ```bash
-git clone <YOUR_REPOSITORY_URL>
+git clone <https://github.com/harshpratapsinghhh/AlumniHub>
 cd AlumniHub
 npm install
 ```
@@ -147,8 +147,8 @@ npm install
 ### 2. Configure Environment Variables
 Create a `.env.local` file in the root directory:
 ```env
-NEXT_PUBLIC_SUPABASE_URL=https://your-supabase-project.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
+NEXT_PUBLIC_SUPABASE_URL=https://private_key.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=supabase-anon-key
 ```
 
 ### 3. Database Setup (Supabase)
